@@ -5,6 +5,8 @@ import com.example.sample.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -17,6 +19,12 @@ public class MemberService {
                         item.getUserName()
                 ))
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public List<MemberResponse> findAllMember() {
+        return memberRepository.findAll().stream()
+                .map(item -> new MemberResponse(item.getUserName()))
+                .toList();
     }
 
 
