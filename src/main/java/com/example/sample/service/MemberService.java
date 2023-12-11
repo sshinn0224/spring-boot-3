@@ -1,6 +1,6 @@
 package com.example.sample.service;
 
-import com.example.sample.presentation.user.query.view.MemberResponse;
+import com.example.sample.presentation.member.query.view.MemberResponse;
 import com.example.sample.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

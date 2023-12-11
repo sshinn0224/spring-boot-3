@@ -1,4 +1,4 @@
-package com.example.sample.presentation.user.query.view;
+package com.example.sample.presentation.member.query.view;
 
 
 import lombok.AllArgsConstructor;
