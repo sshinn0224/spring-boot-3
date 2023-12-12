@@ -17,7 +17,9 @@ public class MemberOperationService {
 
         Members member = new Members(
                 dto.getUserName(),
-                dto.getMobileNumber()
+                dto.getMobileNumber(),
+                dto.getPassword(),
+                dto.getEmail()
         );
 
         memberRepository.save(member);

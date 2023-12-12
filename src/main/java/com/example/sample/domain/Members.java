@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,17 +19,24 @@ public class Members {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(length = 50)
-    @Size(max=50)
+    @Column(length=64)
+    @Size(max=64)
     private String userName;
 
-    @Column(length = 11)
+    @Column(length=11)
     @Size(max=11)
     private String mobileNumber;
 
-    public Members (String userName, String mobileNumber) {
+    private String password;
+
+    @Email
+    private String email;
+
+    public Members (String userName, String mobileNumber, String password, String email) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;
+        this.password = password;
+        this.email = email;
     }
+
 }

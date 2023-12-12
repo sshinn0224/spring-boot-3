@@ -11,4 +11,8 @@ public class MemberCommandDto {
     private String userName;
 
     private String mobileNumber;
+
+    private String password;
+
+    private String email;
 }
