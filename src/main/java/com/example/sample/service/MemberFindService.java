@@ -1,6 +1,6 @@
 package com.example.sample.service;
 
-import com.example.sample.presentation.member.query.view.MemberResponse;
+import com.example.sample.presentation.member.query.dto.MemberResponse;
 import com.example.sample.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberFindService {
 
     private final MemberRepository memberRepository;
 

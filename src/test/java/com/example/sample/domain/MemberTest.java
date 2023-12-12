@@ -1,6 +1,7 @@
 package com.example.sample.domain;
 
 import com.example.sample.repository.MemberRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,8 @@ public class MemberTest {
     MemberRepository memberRepository;
 
     @Test
-    public void ReadOneUserTest() {
+    @DisplayName("회원 휴대폰번호 길이 체크")
+    public void MemberMobileNumberLengthTest() {
         //given
         Optional<Members> members = memberRepository.findById(1L);
 
