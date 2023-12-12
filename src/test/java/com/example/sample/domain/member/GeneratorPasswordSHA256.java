@@ -2,13 +2,10 @@ package com.example.sample.domain.member;
 
 import com.example.sample.common.utils.Aes128Util;
 import com.example.sample.common.utils.Sha256Util;
-import com.google.common.hash.Hashing;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
