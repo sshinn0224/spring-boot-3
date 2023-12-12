@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Members {
 
     @Id
@@ -28,9 +29,5 @@ public class Members {
     public Members (String userName, String mobileNumber) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;
-    }
-
-    public Members() {
-
     }
 }
