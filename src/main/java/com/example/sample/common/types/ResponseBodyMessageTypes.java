@@ -10,5 +10,9 @@ public enum ResponseBodyMessageTypes {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
 
 }

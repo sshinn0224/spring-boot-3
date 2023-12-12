@@ -17,12 +17,12 @@ public class SaveMemberCommand {
     private final MemberOperationService memberOperationService;
 
     @PostMapping("/member")
-    public ResponseEntity<ResponseBodyMessageTypes> save(@RequestBody MemberCommandDto member) {
+    public ResponseEntity<String> save(@RequestBody MemberCommandDto member) {
         memberOperationService.save(member);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(ResponseBodyMessageTypes.SUCCESS);
+                .body(ResponseBodyMessageTypes.SUCCESS.getMessage());
 
     }
 }
