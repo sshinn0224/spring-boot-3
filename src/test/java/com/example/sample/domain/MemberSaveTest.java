@@ -24,7 +24,7 @@ public class MemberSaveTest {
 
     @Test
     @DisplayName("회원 저장 테스트")
-    void MemberSaveTest() {
+    void MemberSaveOneTest() {
         MemberCommandDto member = MemberCommandDto
                 .builder()
                 .userName("SHINJAEHO")
