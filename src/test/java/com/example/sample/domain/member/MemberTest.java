@@ -1,4 +1,4 @@
-package com.example.sample.domain;
+package com.example.sample.domain.member;
 
 import com.example.sample.users.domain.Members;
 import com.example.sample.users.repository.MemberRepository;

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class SaveMember {
@@ -17,7 +19,7 @@ public class SaveMember {
     private final MemberOperationService memberOperationService;
 
     @PostMapping("/member")
-    public ResponseEntity<?> save(@RequestBody MemberRegistrationRequest member) {
+    public ResponseEntity<?> save(@RequestBody @Valid MemberRegistrationRequest member) {
         memberOperationService.save(member);
 
         return ResponseEntity.ok("success");

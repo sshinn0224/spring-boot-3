@@ -23,8 +23,8 @@ public class Members {
     @Size(max=64)
     private String userName;
 
-    @Column(length=11)
-    @Size(max=11)
+    @Column(length=64)
+    @Size(max=64)
     private String mobileNumber;
 
     private String password;
