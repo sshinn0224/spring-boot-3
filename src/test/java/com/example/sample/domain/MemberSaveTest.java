@@ -1,6 +1,6 @@
 package com.example.sample.domain;
 
-import com.example.sample.users.presentation.command.dto.MemberCommandDto;
+import com.example.sample.users.presentation.command.dto.MemberRegistrationRequest;
 import com.example.sample.users.presentation.query.dto.MemberResponse;
 import com.example.sample.users.service.MemberFindService;
 import com.example.sample.users.service.MemberOperationService;
@@ -25,7 +25,7 @@ public class MemberSaveTest {
     @Test
     @DisplayName("회원 저장 테스트")
     void MemberSaveOneTest() {
-        MemberCommandDto member = MemberCommandDto
+        MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
                 .userName("SHINJAEHO")
                 .mobileNumber("11122223333")
@@ -45,7 +45,7 @@ public class MemberSaveTest {
     @Test
     @DisplayName("회원 저장 예외 테스트")
     void MemberSaveExceptionTest() {
-        MemberCommandDto member = MemberCommandDto
+        MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
                 .userName("SHINJAEHO")
                 .build();

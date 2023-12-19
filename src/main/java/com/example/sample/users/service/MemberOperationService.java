@@ -2,7 +2,7 @@ package com.example.sample.users.service;
 
 import com.example.sample.common.utils.Aes128Util;
 import com.example.sample.users.domain.Members;
-import com.example.sample.users.presentation.command.dto.MemberCommandDto;
+import com.example.sample.users.presentation.command.dto.MemberRegistrationRequest;
 import com.example.sample.users.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ public class MemberOperationService {
 
     private final Aes128Util aes128Util;
 
-    public void save(MemberCommandDto dto) {
+    public void save(MemberRegistrationRequest dto) {
         verifyMember(dto);
 
         Members member = new Members(
                 aes128Util.aes128Encrypted(dto.getUserName()),
-                dto.getMobileNumber(),
+                aes128Util.aes128Encrypted(dto.getMobileNumber()),
                 dto.getPassword(),
                 dto.getEmail()
         );
@@ -28,7 +28,7 @@ public class MemberOperationService {
         memberRepository.save(member);
     }
 
-    private void verifyMember(MemberCommandDto dto) {
+    private void verifyMember(MemberRegistrationRequest dto) {
         if(dto.getUserName() == null) {
             throw new IllegalArgumentException("userName cannot be null");
         }
