@@ -1,6 +1,7 @@
 package com.example.sample.domain;
 
-import com.example.sample.repository.MemberRepository;
+import com.example.sample.users.domain.Members;
+import com.example.sample.users.repository.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

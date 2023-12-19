@@ -1,4 +1,4 @@
-package com.example.sample.presentation.member.command.dto;
+package com.example.sample.users.presentation.command.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

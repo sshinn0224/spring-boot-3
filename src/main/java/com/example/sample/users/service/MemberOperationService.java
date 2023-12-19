@@ -1,9 +1,9 @@
-package com.example.sample.service;
+package com.example.sample.users.service;
 
 import com.example.sample.common.utils.Aes128Util;
-import com.example.sample.domain.Members;
-import com.example.sample.presentation.member.command.dto.MemberCommandDto;
-import com.example.sample.repository.MemberRepository;
+import com.example.sample.users.domain.Members;
+import com.example.sample.users.presentation.command.dto.MemberCommandDto;
+import com.example.sample.users.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

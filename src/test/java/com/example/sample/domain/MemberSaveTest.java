@@ -1,9 +1,9 @@
 package com.example.sample.domain;
 
-import com.example.sample.presentation.member.command.dto.MemberCommandDto;
-import com.example.sample.presentation.member.query.dto.MemberResponse;
-import com.example.sample.service.MemberFindService;
-import com.example.sample.service.MemberOperationService;
+import com.example.sample.users.presentation.command.dto.MemberCommandDto;
+import com.example.sample.users.presentation.query.dto.MemberResponse;
+import com.example.sample.users.service.MemberFindService;
+import com.example.sample.users.service.MemberOperationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.sample.presentation.member.query.dto;
+package com.example.sample.users.presentation.query.dto;
 
 
 import lombok.AllArgsConstructor;

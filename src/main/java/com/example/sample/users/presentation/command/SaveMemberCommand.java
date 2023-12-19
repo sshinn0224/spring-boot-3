@@ -1,8 +1,8 @@
-package com.example.sample.presentation.member.command;
+package com.example.sample.users.presentation.command;
 
 import com.example.sample.common.types.ResponseBodyMessageTypes;
-import com.example.sample.presentation.member.command.dto.MemberCommandDto;
-import com.example.sample.service.MemberOperationService;
+import com.example.sample.users.presentation.command.dto.MemberCommandDto;
+import com.example.sample.users.service.MemberOperationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

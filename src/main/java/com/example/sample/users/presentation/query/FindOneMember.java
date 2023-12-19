@@ -1,7 +1,7 @@
-package com.example.sample.presentation.member.query;
+package com.example.sample.users.presentation.query;
 
-import com.example.sample.presentation.member.query.dto.MemberResponse;
-import com.example.sample.service.MemberFindService;
+import com.example.sample.users.presentation.query.dto.MemberResponse;
+import com.example.sample.users.service.MemberFindService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
