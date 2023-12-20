@@ -20,7 +20,7 @@ public class Aes128Util {
 
     private static final String INSTANCE_TYPE = "AES/ECB/PKCS5Padding";
 
-    public String aes128Encrypted(String plainText) {
+    public String encrypted(String plainText) {
         try {
             Cipher cipher = Cipher.getInstance(INSTANCE_TYPE);
             SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");
@@ -37,7 +37,7 @@ public class Aes128Util {
         }
     }
 
-    public String aes128Decrypted(String encryptedText) {
+    public String decrypted(String encryptedText) {
         try {
             Cipher cipher = Cipher.getInstance(INSTANCE_TYPE);
             SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "AES");

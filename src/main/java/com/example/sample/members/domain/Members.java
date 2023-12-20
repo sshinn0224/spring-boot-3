@@ -1,6 +1,7 @@
 package com.example.sample.members.domain;
 
 
+import com.example.sample.common.utils.CryptoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -18,12 +19,15 @@ public class Members {
 
     @Column(length=64)
     @Size(max=64)
+    @Convert(converter = CryptoConverter.class)
     private String userName;
 
     @Column(length=64)
     @Size(max=64)
+    @Convert(converter = CryptoConverter.class)
     private String mobileNumber;
 
+    @Convert(converter = CryptoConverter.class)
     private String password;
 
     @Email

@@ -34,8 +34,8 @@ public class GeneratorPasswordSHA256 {
     void userNameEncryptedTest() {
         String userName = "SHINJAEHO";
 
-        String et = aes128Util.aes128Encrypted(userName);
-        String decryptedText = aes128Util.aes128Decrypted(et);
+        String et = aes128Util.encrypted(userName);
+        String decryptedText = aes128Util.decrypted(et);
 
         System.out.println("decryptedText = " + decryptedText);
         assertThat(userName).isEqualTo(decryptedText).as("AES128 암/복호화 테스트");

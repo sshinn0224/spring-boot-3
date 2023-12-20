@@ -19,8 +19,8 @@ public class MemberOperationService {
         verifyMember(dto);
 
         Members member = new Members(
-                aes128Util.aes128Encrypted(dto.getUsername()),
-                aes128Util.aes128Encrypted(dto.getMobileNumber()),
+                dto.getUsername(),
+                dto.getMobileNumber(),
                 dto.getPassword(),
                 dto.getEmail()
         );

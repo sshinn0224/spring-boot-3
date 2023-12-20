@@ -33,13 +33,13 @@ public class MemberServiceTest {
 
 
         memberOperationService.save(member);
-        Optional<MemberResponse> memberResponse = memberFindService
+        MemberResponse memberResponse = memberFindService
                 .findAllMember()
                 .stream()
                 .filter(item -> "SHINJAEHO".equals(item.getUserName()))
-                .findFirst();
+                .findFirst().orElse(new MemberResponse());
 
-        assertEquals(member.getUsername(), memberResponse.get().getUserName());
+        assertEquals(member.getUsername(), memberResponse.getUserName());
     }
 
     @Test
