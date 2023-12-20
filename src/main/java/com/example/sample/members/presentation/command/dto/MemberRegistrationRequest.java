@@ -1,8 +1,7 @@
-package com.example.sample.users.presentation.command.dto;
+package com.example.sample.members.presentation.command.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,11 +15,11 @@ import lombok.NoArgsConstructor;
 public class MemberRegistrationRequest {
 
     @NotBlank
-    @Size(max = 20)
+    @Size(max = 20, message = "이름은 20자 보다 작아야 합니다.")
     private String username;
 
     @NotBlank
-    @Size(max = 11)
+    @Size(max = 11, message = "휴대폰 번호는 11자 보다 작아야 합니다.")
     private String mobileNumber;
 
     @NotBlank

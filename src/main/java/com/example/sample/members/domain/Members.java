@@ -1,4 +1,4 @@
-package com.example.sample.users.domain;
+package com.example.sample.members.domain;
 
 
 import jakarta.persistence.*;

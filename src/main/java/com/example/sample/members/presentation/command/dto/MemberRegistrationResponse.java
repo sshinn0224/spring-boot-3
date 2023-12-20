@@ -1,8 +1,7 @@
-package com.example.sample.users.presentation.command.dto;
+package com.example.sample.members.presentation.command.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
 @Data
 @Builder

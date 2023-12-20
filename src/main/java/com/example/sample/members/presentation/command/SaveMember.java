@@ -1,11 +1,9 @@
-package com.example.sample.users.presentation.command;
+package com.example.sample.members.presentation.command;
 
-import com.example.sample.users.presentation.command.dto.MemberRegistrationRequest;
-import com.example.sample.users.presentation.command.dto.MemberRegistrationResponse;
-import com.example.sample.users.service.MemberOperationService;
+import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
+import com.example.sample.members.service.MemberOperationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

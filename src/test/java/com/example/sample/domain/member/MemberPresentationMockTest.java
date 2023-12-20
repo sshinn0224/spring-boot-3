@@ -1,7 +1,7 @@
 package com.example.sample.domain.member;
 
 
-import com.example.sample.users.presentation.command.dto.MemberRegistrationRequest;
+import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MemberMockTest {
+public class MemberPresentationMockTest {
 
     @Autowired
     MockMvc mockMvc;

@@ -1,7 +1,7 @@
-package com.example.sample.users.service;
+package com.example.sample.members.service;
 
-import com.example.sample.users.presentation.query.dto.MemberResponse;
-import com.example.sample.users.repository.MemberRepository;
+import com.example.sample.members.presentation.query.dto.MemberResponse;
+import com.example.sample.members.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

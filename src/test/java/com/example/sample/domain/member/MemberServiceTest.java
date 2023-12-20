@@ -1,21 +1,20 @@
 package com.example.sample.domain.member;
 
-import com.example.sample.users.presentation.command.dto.MemberRegistrationRequest;
-import com.example.sample.users.presentation.query.dto.MemberResponse;
-import com.example.sample.users.service.MemberFindService;
-import com.example.sample.users.service.MemberOperationService;
+import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
+import com.example.sample.members.presentation.query.dto.MemberResponse;
+import com.example.sample.members.service.MemberFindService;
+import com.example.sample.members.service.MemberOperationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class MemberSaveTest {
+public class MemberServiceTest {
 
     @Autowired
     MemberOperationService memberOperationService;
