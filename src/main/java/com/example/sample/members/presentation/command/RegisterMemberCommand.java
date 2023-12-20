@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Validated
-public class SaveMember {
+public class RegisterMemberCommand {
 
     private final MemberOperationService memberOperationService;
 

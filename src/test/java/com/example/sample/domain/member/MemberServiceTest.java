@@ -28,6 +28,7 @@ public class MemberServiceTest {
         MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
                 .username("SHINJAEHO")
+                .password("1234")
                 .mobileNumber("11122223333")
                 .build();
 
