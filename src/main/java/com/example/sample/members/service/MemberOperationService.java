@@ -1,6 +1,7 @@
 package com.example.sample.members.service;
 
 import com.example.sample.common.utils.Aes128Util;
+import com.example.sample.common.utils.Sha256Util;
 import com.example.sample.members.domain.Members;
 import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
 import com.example.sample.members.repository.MemberRepository;
@@ -13,7 +14,7 @@ public class MemberOperationService {
 
     private final MemberRepository memberRepository;
 
-    private final Aes128Util aes128Util;
+    private final Sha256Util sha256Util;
 
     public void save(MemberRegistrationRequest dto) {
         verifyMember(dto);
@@ -21,7 +22,7 @@ public class MemberOperationService {
         Members member = new Members(
                 dto.getUsername(),
                 dto.getMobileNumber(),
-                dto.getPassword(),
+                sha256Util.passwordEncrypted(dto.getPassword()),
                 dto.getEmail()
         );
 
