@@ -19,7 +19,7 @@ public class MemberOperationService {
         verifyMember(dto);
 
         Members member = new Members(
-                aes128Util.aes128Encrypted(dto.getUserName()),
+                aes128Util.aes128Encrypted(dto.getUsername()),
                 aes128Util.aes128Encrypted(dto.getMobileNumber()),
                 dto.getPassword(),
                 dto.getEmail()
@@ -29,7 +29,7 @@ public class MemberOperationService {
     }
 
     private void verifyMember(MemberRegistrationRequest dto) {
-        if(dto.getUserName() == null) {
+        if(dto.getUsername() == null) {
             throw new IllegalArgumentException("userName cannot be null");
         }
 

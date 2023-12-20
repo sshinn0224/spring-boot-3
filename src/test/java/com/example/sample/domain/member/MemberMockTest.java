@@ -25,28 +25,46 @@ public class MemberMockTest {
 
     @Test
     @DisplayName("username 없다면 500에러가 발생 한다.")
-    void usernameNullTest() throws Exception {
+    void usernameValidation() throws Exception {
         MemberRegistrationRequest request = MemberRegistrationRequest.builder()
-                .mobileNumber("1112222333330")
-                .email("test@gmail.com")
+                .mobileNumber("01022223333")
                 .password("1234")
+                .email("test@email.com")
                 .build();
 
         mockMvc.perform(
-                MockMvcRequestBuilders
-                        .post("/member")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
+                        MockMvcRequestBuilders
+                                .post("/member")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(request)))
                 .andExpect(MockMvcResultMatchers.status().is5xxServerError());
     }
 
     @Test
     @DisplayName("이상한 Email이 들어오면 500에러가 발생 한다.")
-    void validationTest() throws Exception {
+    void emailValidation() throws Exception {
         MemberRegistrationRequest request = MemberRegistrationRequest.builder()
-                .userName("SHINJAEHO")
-                .mobileNumber("1112222333330")
+                .username("SHINJAEHO")
+                .mobileNumber("01012345678")
                 .email("testgmail.com")
+                .password("1234")
+                .build();
+
+        mockMvc.perform(
+                        MockMvcRequestBuilders
+                                .post("/member")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(MockMvcResultMatchers.status().is5xxServerError());
+    }
+
+    @Test
+    @DisplayName("모바일번호가 11자리 이상일 경우 500에러가 발생 한다.")
+    void mobileNumberValidation() throws Exception {
+        MemberRegistrationRequest request = MemberRegistrationRequest.builder()
+                .username("SHINJAEHO")
+                .mobileNumber("010123456781")
+                .email("test@gmail.com")
                 .password("1234")
                 .build();
 

@@ -28,7 +28,7 @@ public class MemberSaveTest {
     void MemberSaveOneTest() {
         MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
-                .userName("SHINJAEHO")
+                .username("SHINJAEHO")
                 .mobileNumber("11122223333")
                 .build();
 
@@ -40,7 +40,7 @@ public class MemberSaveTest {
                 .filter(item -> "SHINJAEHO".equals(item.getUserName()))
                 .findFirst();
 
-        assertEquals(member.getUserName(), memberResponse.get().getUserName());
+        assertEquals(member.getUsername(), memberResponse.get().getUserName());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class MemberSaveTest {
     void MemberSaveExceptionTest() {
         MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
-                .userName("SHINJAEHO")
+                .username("SHINJAEHO")
                 .build();
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> memberOperationService.save(member));
