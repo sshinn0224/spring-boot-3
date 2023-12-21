@@ -1,5 +1,6 @@
 package com.example.sample.members.service;
 
+import com.example.sample.common.types.AuthTypes;
 import com.example.sample.common.utils.Aes128Util;
 import com.example.sample.common.utils.Sha256Util;
 import com.example.sample.members.domain.Members;
@@ -23,7 +24,8 @@ public class MemberOperationService {
                 dto.getUsername(),
                 dto.getMobileNumber(),
                 sha256Util.passwordEncrypted(dto.getPassword()),
-                dto.getEmail()
+                dto.getEmail(),
+                AuthTypes.BASIC // 일반 회원은 BASIC 타입으로 처리 한다.
         );
 
         memberRepository.save(member);

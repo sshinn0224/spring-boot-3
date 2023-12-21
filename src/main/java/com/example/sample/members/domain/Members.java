@@ -1,12 +1,15 @@
 package com.example.sample.members.domain;
 
 
+import com.example.sample.common.types.AuthTypes;
 import com.example.sample.common.utils.CryptoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,7 +18,7 @@ public class Members {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Column(length=64)
     @Size(max=64)
@@ -33,11 +36,15 @@ public class Members {
     @Email
     private String email;
 
-    public Members (String userName, String mobileNumber, String password, String email) {
+    @Enumerated(EnumType.STRING)
+    private AuthTypes authority;
+
+    public Members (String userName, String mobileNumber, String password, String email, AuthTypes authority) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;
         this.password = password;
         this.email = email;
+        this.authority = authority;
     }
 
 }
