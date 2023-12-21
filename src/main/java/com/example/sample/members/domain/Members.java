@@ -39,6 +39,8 @@ public class Members {
     @Enumerated(EnumType.STRING)
     private AuthTypes authority;
 
+    private String gender;
+
     public Members (String userName, String mobileNumber, String password, String email, AuthTypes authority) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;

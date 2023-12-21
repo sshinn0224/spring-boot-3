@@ -1,5 +1,6 @@
 package com.example.sample.members.service;
 
+import com.example.sample.common.types.AuthTypes;
 import com.example.sample.members.presentation.query.dto.MemberResponse;
 import com.example.sample.members.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
