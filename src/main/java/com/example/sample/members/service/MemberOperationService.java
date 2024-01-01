@@ -7,6 +7,7 @@ import com.example.sample.members.domain.Members;
 import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
 import com.example.sample.members.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,7 @@ public class MemberOperationService {
 
     private final MemberRepository memberRepository;
 
-    private final Sha256Util sha256Util;
+    private final PasswordEncoder passwordEncoder;
 
     public void save(MemberRegistrationRequest dto) {
         verifyMember(dto);
@@ -23,7 +24,7 @@ public class MemberOperationService {
         Members member = new Members(
                 dto.getUsername(),
                 dto.getMobileNumber(),
-                sha256Util.passwordEncrypted(dto.getPassword()),
+                passwordEncoder.encode(dto.getPassword()),
                 dto.getEmail(),
                 AuthTypes.BASIC // 일반 회원은 BASIC 타입으로 처리 한다.
         );
