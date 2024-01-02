@@ -30,6 +30,12 @@ public class AuthCommand {
 
     private final TokenProvider tokenProvider;
 
+    /**
+     * 로그인
+     * 토큰이 만료 된 경우 토큰을 재 발급 해준다.
+     * @param loginDto
+     * @return
+     */
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authCommand(@RequestBody @Valid LoginRequest loginDto) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
