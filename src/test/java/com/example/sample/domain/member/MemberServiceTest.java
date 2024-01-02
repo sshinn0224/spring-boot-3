@@ -55,5 +55,24 @@ public class MemberServiceTest {
         assertEquals(exception.getMessage(), "mobileNumber cannot be null");
     }
 
+    @Test
+    @DisplayName("회원 중복 저장 에러 테스트")
+    void SameMemberExceptionTest() {
+
+        MemberRegistrationRequest member = MemberRegistrationRequest
+                .builder()
+                .username("SHINJAEHO")
+                .password("1234")
+                .mobileNumber("11122223333")
+                .build();
+
+
+        memberOperationService.save(member);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> memberOperationService.save(member));
+        System.out.println("exception.getMessage() = " + exception.getMessage());
+        assertEquals(exception.getMessage(), "username이 중복 됩니다.");
+    }
+
 
 }
