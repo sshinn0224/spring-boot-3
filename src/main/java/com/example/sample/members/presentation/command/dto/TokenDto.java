@@ -1,17 +1,13 @@
 package com.example.sample.members.presentation.command.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TokenDto {
-
-    public TokenDto(String token) {
-        this.token = token;
-    }
-
-    private String token;
+    private String accessToken;
+    private String refreshToken;
 }

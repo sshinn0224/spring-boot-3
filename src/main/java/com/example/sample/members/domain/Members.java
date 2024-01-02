@@ -41,11 +41,12 @@ public class Members {
 
     private String gender;
 
-    public Members (String userName, String mobileNumber, String password, String email, AuthTypes authority) {
+    public Members (String userName, String mobileNumber, String password, String email, String gender, AuthTypes authority) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;
         this.password = password;
         this.email = email;
+        this.gender = gender;
         this.authority = authority;
     }
 

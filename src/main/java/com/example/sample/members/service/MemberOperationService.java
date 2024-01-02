@@ -26,6 +26,7 @@ public class MemberOperationService {
                 dto.getMobileNumber(),
                 passwordEncoder.encode(dto.getPassword()),
                 dto.getEmail(),
+                dto.getGender(),
                 AuthTypes.BASIC // 일반 회원은 BASIC 타입으로 처리 한다.
         );
 

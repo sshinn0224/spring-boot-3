@@ -43,14 +43,15 @@ public class AuthCommand {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         /**
-         * 인증이 통과 했다면, jwt 토큰을 생성 한다.
+         * 인증이 통과 했다면
+         * refreshToken, accessToken을 생성 한다.
          */
-        String jwtToken = tokenProvider.createToken(authentication);
+        TokenDto tokenDto = tokenProvider.createToken(authentication);
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwtToken);
+        httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + tokenDto.getAccessToken());
 
-        return new ResponseEntity<>(new TokenDto(jwtToken), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(tokenDto, httpHeaders, HttpStatus.OK);
     }
 
 }
