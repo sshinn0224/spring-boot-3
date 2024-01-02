@@ -18,7 +18,7 @@ public class MemberRegisterCommand {
 
     private final MemberOperationService memberOperationService;
 
-    @PostMapping("/member")
+    @PostMapping("/sign-up")
     public ResponseEntity<?> save(@RequestBody @Valid MemberRegistrationRequest member) {
         memberOperationService.save(member);
 
