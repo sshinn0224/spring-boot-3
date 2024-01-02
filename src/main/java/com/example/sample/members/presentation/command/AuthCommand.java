@@ -32,19 +32,14 @@ public class AuthCommand {
 
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authCommand(@RequestBody @Valid LoginRequest loginDto) {
-        logger.info("/authenticate start...");
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwtToken = tokenProvider.createToken(authentication);
-
         /**
-         * 인증이 통과 했다면, jwt 토큰을 반납 한다.
+         * 인증이 통과 했다면, jwt 토큰을 생성 한다.
          */
-
-
+        String jwtToken = tokenProvider.createToken(authentication);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwtToken);

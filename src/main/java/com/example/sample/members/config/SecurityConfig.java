@@ -1,5 +1,7 @@
 package com.example.sample.members.config;
 
+import com.example.sample.members.jwt.JwtAccessDeniedHandler;
+import com.example.sample.members.jwt.JwtAuthenticationEntryPoint;
 import com.example.sample.members.jwt.JwtFilter;
 import com.example.sample.members.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,12 @@ public class SecurityConfig {
 
     private final TokenProvider tokenProvider;
 
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -33,6 +41,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
 
                 )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedHandler(jwtAccessDeniedHandler)
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
