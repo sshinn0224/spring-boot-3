@@ -34,6 +34,13 @@ public class MemberOperationService {
     }
 
     private void verifyMember(MemberRegistrationRequest dto) {
+        // 중복 체크
+        memberRepository.findByUserName(dto.getUsername())
+                .ifPresent(user -> {
+                    throw new IllegalArgumentException("username이 중복 됩니다.");
+                }
+        );
+
         if(dto.getUsername() == null) {
             throw new IllegalArgumentException("userName cannot be null");
         }
