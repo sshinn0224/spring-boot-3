@@ -5,6 +5,7 @@ import com.example.sample.members.jwt.JwtFilter;
 import com.example.sample.members.jwt.TokenProvider;
 import com.example.sample.members.presentation.command.dto.LoginRequest;
 import com.example.sample.members.presentation.command.dto.TokenDto;
+import com.example.sample.members.service.MemberOperationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -30,6 +31,8 @@ public class AuthCommand {
 
     private final TokenProvider tokenProvider;
 
+    private final MemberOperationService memberOperationService;
+
     /**
      * 로그인
      * 토큰이 만료 된 경우 토큰을 재 발급 해준다.
@@ -47,6 +50,10 @@ public class AuthCommand {
          * refreshToken, accessToken을 생성 한다.
          */
         TokenDto tokenDto = tokenProvider.createToken(authentication);
+
+        // refreshToken은 저장 한다.
+        memberOperationService.saveRefreshToken(loginDto.getUsername(), tokenDto.getRefreshToken());
+
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + tokenDto.getAccessToken());

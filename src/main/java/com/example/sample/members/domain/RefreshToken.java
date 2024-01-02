@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Builder
-@AllArgsConstructor
 @Getter
 public class RefreshToken {
 
@@ -22,4 +20,12 @@ public class RefreshToken {
     private String username;
 
 
+    public RefreshToken(String username, String refreshToken) {
+        this.username = username;
+        this.refreshToken = refreshToken;
+    }
+
+    public void changeRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 }
