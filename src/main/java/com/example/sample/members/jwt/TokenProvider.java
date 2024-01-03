@@ -73,6 +73,20 @@ public class TokenProvider implements InitializingBean {
         );
     }
 
+    private String recreationAccessToken(String username, Object authorities) {
+
+        long now = (new Date()).getTime();
+        Date refreshTokenValidity = new Date(now + this.refreshTokenValidityInMilliseconds);
+
+        return Jwts.builder()
+                .setSubject(username)
+                .claim(AUTHORITIES_KEY, authorities)
+                .signWith(key, SignatureAlgorithm.HS512)
+                .setExpiration(refreshTokenValidity)
+                .compact();
+    }
+
+
     public Authentication getAuthentication(String token) {
         /**
          * jwt 토큰을 사용 하여 사용자의 권한 정보를 반환 한다.
@@ -95,9 +109,6 @@ public class TokenProvider implements InitializingBean {
     }
 
     public boolean validateToken(String token) {
-        /**
-         * 토큰 정보를 이용하여 토큰 유효성을 체크 한다.
-         */
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
@@ -111,5 +122,23 @@ public class TokenProvider implements InitializingBean {
             logger.info("JWT 토큰이 잘못 되었습니다.");
         }
         return false;
+    }
+
+    public String validateRefreshToken(String token) {
+        try {
+            Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+
+            // refreshToken 이 유효한 경우, accessToken을 다시 만들어서 반환 한다.
+            if(!claims.getBody().getExpiration().before(new Date())) {
+                return recreationAccessToken(
+                        claims.getBody().get("sub").toString(),
+                        claims.getBody().get("auth")
+                );
+            }
+        } catch (Exception e) {
+            return null;
+        }
+
+        return null;
     }
 }

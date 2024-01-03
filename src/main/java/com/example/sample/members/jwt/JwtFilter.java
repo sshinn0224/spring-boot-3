@@ -43,7 +43,7 @@ public class JwtFilter extends GenericFilterBean {
         String requestURI = httpServletRequest.getRequestURI();
 
         /**
-         * 넘어온 JWT Token을 검사 한다.
+         * AccessToken을 검사 한다.
          * 검사 통과 시 인증 정보를 저장 한다.
          */
         if(StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {

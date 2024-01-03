@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeHttpRequest -> authorizeHttpRequest
                         .requestMatchers("/sign-up").permitAll()
+                        .requestMatchers("/recreation-access-token").permitAll()
                         .requestMatchers("/authenticate").permitAll()
                         .anyRequest().authenticated()
 

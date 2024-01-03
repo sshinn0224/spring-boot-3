@@ -46,14 +46,13 @@ public class AuthCommand {
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         /**
-         * 인증이 통과 했다면
+         * id, password 검증 통과 후
          * refreshToken, accessToken을 생성 한다.
          */
         TokenDto tokenDto = tokenProvider.createToken(authentication);
 
         // refreshToken은 저장 한다.
         memberOperationService.saveRefreshToken(loginDto.getUsername(), tokenDto.getRefreshToken());
-
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + tokenDto.getAccessToken());
