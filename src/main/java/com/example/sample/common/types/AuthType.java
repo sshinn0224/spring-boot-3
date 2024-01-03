@@ -1,5 +1,5 @@
 package com.example.sample.common.types;
 
-public enum AuthTypes {
+public enum AuthType {
     ADMIN, BASIC
 }

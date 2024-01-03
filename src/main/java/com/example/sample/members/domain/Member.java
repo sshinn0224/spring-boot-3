@@ -1,7 +1,6 @@
 package com.example.sample.members.domain;
 
 
-import com.example.sample.common.types.AuthTypes;
 import com.example.sample.common.utils.CryptoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,7 +1,7 @@
 package com.example.sample.members.presentation.command;
 
 import com.example.sample.members.presentation.command.dto.signUpDto;
-import com.example.sample.members.service.MemberOperationService;
+import com.example.sample.members.service.MemberCommandService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class signUpCommand {
 
-    private final MemberOperationService memberOperationService;
+    private final MemberCommandService memberCommandService;
 
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@RequestBody @Valid signUpDto member) {
-        memberOperationService.save(member);
+        memberCommandService.save(member);
 
         return new ResponseEntity<>("OK",HttpStatus.OK);
     }

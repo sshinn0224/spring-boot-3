@@ -1,6 +1,5 @@
 package com.example.sample.members.presentation.command.dto;
 
-import com.example.sample.common.types.AuthTypes;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

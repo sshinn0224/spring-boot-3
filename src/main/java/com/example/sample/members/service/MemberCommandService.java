@@ -1,6 +1,6 @@
 package com.example.sample.members.service;
 
-import com.example.sample.common.types.AuthTypes;
+import com.example.sample.common.types.AuthType;
 import com.example.sample.members.domain.Authority;
 import com.example.sample.members.domain.Member;
 import com.example.sample.members.domain.RefreshToken;
@@ -8,17 +8,15 @@ import com.example.sample.members.presentation.command.dto.signUpDto;
 import com.example.sample.members.repository.MemberRepository;
 import com.example.sample.members.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberOperationService {
+public class MemberCommandService {
 
     private final MemberRepository memberRepository;
 
@@ -40,13 +38,11 @@ public class MemberOperationService {
                 new ArrayList<>()
         );
 
-        Authority basicAuthority = new Authority(dto.getUsername(), AuthTypes.BASIC, member);
-        member.getAuthorityList().add(basicAuthority);
-
-        Authority adminAuthority = new Authority(dto.getUsername(), AuthTypes.ADMIN, member);
-        member.getAuthorityList().add(adminAuthority);
 
         memberRepository.save(member);
+
+        member.getAuthorityList().add(new Authority(AuthType.ADMIN, member));
+        member.getAuthorityList().add(new Authority(AuthType.BASIC, member));
     }
 
 
