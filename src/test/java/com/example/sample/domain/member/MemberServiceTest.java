@@ -1,7 +1,7 @@
 package com.example.sample.domain.member;
 
 import com.example.sample.members.domain.RefreshToken;
-import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
+import com.example.sample.members.presentation.command.dto.signUpDto;
 import com.example.sample.members.presentation.query.dto.MemberResponse;
 import com.example.sample.members.repository.RefreshTokenRepository;
 import com.example.sample.members.service.MemberFindService;
@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,7 +30,7 @@ public class MemberServiceTest {
     @DisplayName("회원 저장 테스트")
     @Transactional
     void MemberSaveOneTest() {
-        MemberRegistrationRequest member = MemberRegistrationRequest
+        signUpDto member = signUpDto
                 .builder()
                 .username("SHINJAEHO@gmail.com")
                 .password("1234")
@@ -54,7 +52,7 @@ public class MemberServiceTest {
     @DisplayName("회원 저장 예외 테스트")
     @Transactional
     void MemberSaveExceptionTest() {
-        MemberRegistrationRequest member = MemberRegistrationRequest
+        signUpDto member = signUpDto
                 .builder()
                 .username("SHINJAEHO")
                 .build();
@@ -67,7 +65,7 @@ public class MemberServiceTest {
     @DisplayName("회원 중복 저장 에러 테스트")
     @Transactional
     void SameMemberExceptionTest() {
-        MemberRegistrationRequest member = MemberRegistrationRequest
+        signUpDto member = signUpDto
                 .builder()
                 .username("SHINJAEHO@gmail.com")
                 .password("1234")

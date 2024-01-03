@@ -1,5 +1,6 @@
 package com.example.sample.members.presentation.command.dto;
 
+import com.example.sample.common.types.AuthTypes;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberRegistrationRequest {
+public class signUpDto {
 
     @NotBlank
     @Size(max = 20, message = "이름은 20자 보다 작아야 합니다.")
