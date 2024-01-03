@@ -1,7 +1,7 @@
 package com.example.sample.domain.member;
 
 
-import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
+import com.example.sample.members.presentation.command.dto.signUpDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ public class MemberPresentationMockTest {
     @Test
     @DisplayName("username 없다면 500에러가 발생 한다.")
     void usernameValidation() throws Exception {
-        MemberRegistrationRequest request = MemberRegistrationRequest.builder()
+        signUpDto request = signUpDto.builder()
                 .mobileNumber("01022223333")
                 .password("1234")
                 .email("test@email.com")
@@ -43,7 +43,7 @@ public class MemberPresentationMockTest {
     @Test
     @DisplayName("이상한 Email이 들어오면 500에러가 발생 한다.")
     void emailValidation() throws Exception {
-        MemberRegistrationRequest request = MemberRegistrationRequest.builder()
+        signUpDto request = signUpDto.builder()
                 .username("SHINJAEHO")
                 .mobileNumber("01012345678")
                 .email("testgmail.com")
@@ -61,7 +61,7 @@ public class MemberPresentationMockTest {
     @Test
     @DisplayName("모바일번호가 11자리 이상일 경우 500에러가 발생 한다.")
     void mobileNumberValidation() throws Exception {
-        MemberRegistrationRequest request = MemberRegistrationRequest.builder()
+        signUpDto request = signUpDto.builder()
                 .username("SHINJAEHO@gmail.com")
                 .mobileNumber("010123456781")
                 .email("test@gmail.com")

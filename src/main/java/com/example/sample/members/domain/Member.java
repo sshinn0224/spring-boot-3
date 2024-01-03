@@ -1,7 +1,6 @@
 package com.example.sample.members.domain;
 
 
-import com.example.sample.common.types.AuthTypes;
 import com.example.sample.common.utils.CryptoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -9,12 +8,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Members {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,18 +36,17 @@ public class Members {
     @Email
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    private AuthTypes authority;
-
     private String gender;
 
-    public Members (String userName, String mobileNumber, String password, String email, String gender, AuthTypes authority) {
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Authority> authorityList;
+
+    public Member(String userName, String mobileNumber, String password, String email, String gender, List<Authority> authorityList) {
         this.userName = userName;
         this.mobileNumber = mobileNumber;
         this.password = password;
         this.email = email;
         this.gender = gender;
-        this.authority = authority;
+        this.authorityList = authorityList;
     }
-
 }

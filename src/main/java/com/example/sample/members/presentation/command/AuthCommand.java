@@ -5,7 +5,7 @@ import com.example.sample.members.jwt.JwtFilter;
 import com.example.sample.members.jwt.TokenProvider;
 import com.example.sample.members.presentation.command.dto.LoginRequest;
 import com.example.sample.members.presentation.command.dto.TokenDto;
-import com.example.sample.members.service.MemberOperationService;
+import com.example.sample.members.service.MemberCommandService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class AuthCommand {
 
     private final TokenProvider tokenProvider;
 
-    private final MemberOperationService memberOperationService;
+    private final MemberCommandService memberCommandService;
 
     /**
      * 로그인
@@ -52,7 +52,7 @@ public class AuthCommand {
         TokenDto tokenDto = tokenProvider.createToken(authentication);
 
         // refreshToken은 저장 한다.
-        memberOperationService.saveRefreshToken(loginDto.getUsername(), tokenDto.getRefreshToken());
+        memberCommandService.saveRefreshToken(loginDto.getUsername(), tokenDto.getRefreshToken());
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + tokenDto.getAccessToken());

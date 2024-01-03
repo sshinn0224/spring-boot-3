@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberRegistrationRequest {
+public class signUpDto {
 
     @NotBlank
     @Size(max = 20, message = "이름은 20자 보다 작아야 합니다.")

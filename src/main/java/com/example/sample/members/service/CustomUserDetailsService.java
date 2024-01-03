@@ -1,6 +1,6 @@
 package com.example.sample.members.service;
 
-import com.example.sample.members.domain.Members;
+import com.example.sample.members.domain.Member;
 import com.example.sample.members.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,9 +32,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     }
 
-    private User createUser(Members member) {
+    private User createUser(Member member) {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
-        grantedAuthorityList.add(new SimpleGrantedAuthority(member.getAuthority().toString()));
+
+        member.getAuthorityList().stream().map(item -> grantedAuthorityList.add(
+                new SimpleGrantedAuthority(item.toString())));
         return new User(member.getUserName(), member.getPassword(), grantedAuthorityList);
     }
 }
