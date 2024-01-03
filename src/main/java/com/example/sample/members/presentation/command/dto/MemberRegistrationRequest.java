@@ -28,4 +28,6 @@ public class MemberRegistrationRequest {
     @NotBlank
     @Email(message = "잘못된 email 입니다.")
     private String email;
+
+    private String gender;
 }

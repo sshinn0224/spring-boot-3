@@ -1,7 +1,9 @@
 package com.example.sample.domain.member;
 
+import com.example.sample.members.domain.RefreshToken;
 import com.example.sample.members.presentation.command.dto.MemberRegistrationRequest;
 import com.example.sample.members.presentation.query.dto.MemberResponse;
+import com.example.sample.members.repository.RefreshTokenRepository;
 import com.example.sample.members.service.MemberFindService;
 import com.example.sample.members.service.MemberOperationService;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +23,9 @@ public class MemberServiceTest {
 
     @Autowired
     MemberFindService memberFindService;
+
+    @Autowired
+    RefreshTokenRepository refreshTokenRepository;
 
     @Test
     @DisplayName("회원 저장 테스트")
@@ -53,6 +58,46 @@ public class MemberServiceTest {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> memberOperationService.save(member));
         assertEquals(exception.getMessage(), "mobileNumber cannot be null");
+    }
+
+    @Test
+    @DisplayName("회원 중복 저장 에러 테스트")
+    void SameMemberExceptionTest() {
+        MemberRegistrationRequest member = MemberRegistrationRequest
+                .builder()
+                .username("SHINJAEHO")
+                .password("1234")
+                .mobileNumber("11122223333")
+                .build();
+
+
+        memberOperationService.save(member);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> memberOperationService.save(member));
+        System.out.println("exception.getMessage() = " + exception.getMessage());
+        assertEquals(exception.getMessage(), "username이 중복 됩니다.");
+    }
+
+    @Test
+    @DisplayName("RefreshToken 저장 테스트")
+    void saveRefreshTokenTest() {
+
+        memberOperationService.saveRefreshToken("TEST", "askdkdkTEST");
+
+        RefreshToken refreshToken = refreshTokenRepository.findByUsername("TEST").get();
+
+        assertEquals("askdkdkTEST", refreshToken.getRefreshToken());
+    }
+
+    @Test
+    @DisplayName("RefreshToken 중복일 때 테스트")
+    void saveRefreshTokenDoubleTest() {
+        memberOperationService.saveRefreshToken("TEST", "askdkdkTEST");
+        memberOperationService.saveRefreshToken("TEST", "sampleKey");
+
+        RefreshToken refreshToken = refreshTokenRepository.findByUsername("TEST").get();
+
+        assertEquals("sampleKey" , refreshToken.getRefreshToken());
     }
 
 
