@@ -18,8 +18,22 @@ public class RefreshTokenCommand {
 
     @PostMapping("/recreation-access-token")
     public ResponseEntity<AccessTokenDto> validateRefreshToken(@RequestBody RefreshTokenDto dto) {
+        /**
+         * refreshToken이 만료 됨 -> 로그인
+         * refreshToken유효기간이 남아있다 -> accessToken 생성
+         */
+        String accessToken = tokenProvider.validateRefreshToken(dto.getRefreshToken());
+
+        if(accessToken == null) {
+            // refreshToken 만료로 판단
+            return new ResponseEntity<>(
+                    new AccessTokenDto(),
+                    HttpStatus.UNAUTHORIZED
+            );
+        }
+
         return new ResponseEntity<>(
-                new AccessTokenDto(tokenProvider.validateRefreshToken(dto.getRefreshToken())),
+                new AccessTokenDto(accessToken),
                 HttpStatus.OK
         );
     }
