@@ -23,6 +23,5 @@ public class RegisterCommand {
         memberOperationService.save(member);
 
         return ResponseEntity.ok("success");
-
     }
 }

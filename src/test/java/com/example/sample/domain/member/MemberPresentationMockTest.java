@@ -34,7 +34,7 @@ public class MemberPresentationMockTest {
 
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/member")
+                                .post("/sign-up")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(MockMvcResultMatchers.status().is5xxServerError());
@@ -52,7 +52,7 @@ public class MemberPresentationMockTest {
 
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/member")
+                                .post("/sign-up")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(MockMvcResultMatchers.status().is5xxServerError());
@@ -62,7 +62,7 @@ public class MemberPresentationMockTest {
     @DisplayName("모바일번호가 11자리 이상일 경우 500에러가 발생 한다.")
     void mobileNumberValidation() throws Exception {
         MemberRegistrationRequest request = MemberRegistrationRequest.builder()
-                .username("SHINJAEHO")
+                .username("SHINJAEHO@gmail.com")
                 .mobileNumber("010123456781")
                 .email("test@gmail.com")
                 .password("1234")
@@ -70,7 +70,7 @@ public class MemberPresentationMockTest {
 
         mockMvc.perform(
                         MockMvcRequestBuilders
-                                .post("/member")
+                                .post("/sign-up")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(MockMvcResultMatchers.status().is5xxServerError());

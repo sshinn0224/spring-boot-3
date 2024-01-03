@@ -22,6 +22,7 @@ public class Members {
 
     @Column(length=64)
     @Size(max=64)
+    @Email
     @Convert(converter = CryptoConverter.class)
     private String userName;
 

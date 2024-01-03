@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -29,10 +30,11 @@ public class MemberServiceTest {
 
     @Test
     @DisplayName("회원 저장 테스트")
+    @Transactional
     void MemberSaveOneTest() {
         MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
-                .username("SHINJAEHO")
+                .username("SHINJAEHO@gmail.com")
                 .password("1234")
                 .mobileNumber("11122223333")
                 .build();
@@ -42,7 +44,7 @@ public class MemberServiceTest {
         MemberResponse memberResponse = memberFindService
                 .findAllMember()
                 .stream()
-                .filter(item -> "SHINJAEHO".equals(item.getUserName()))
+                .filter(item -> "SHINJAEHO@gmail.com".equals(item.getUserName()))
                 .findFirst().orElse(new MemberResponse());
 
         assertEquals(member.getUsername(), memberResponse.getUserName());
@@ -50,6 +52,7 @@ public class MemberServiceTest {
 
     @Test
     @DisplayName("회원 저장 예외 테스트")
+    @Transactional
     void MemberSaveExceptionTest() {
         MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
@@ -62,10 +65,11 @@ public class MemberServiceTest {
 
     @Test
     @DisplayName("회원 중복 저장 에러 테스트")
+    @Transactional
     void SameMemberExceptionTest() {
         MemberRegistrationRequest member = MemberRegistrationRequest
                 .builder()
-                .username("SHINJAEHO")
+                .username("SHINJAEHO@gmail.com")
                 .password("1234")
                 .mobileNumber("11122223333")
                 .build();
@@ -74,12 +78,12 @@ public class MemberServiceTest {
         memberOperationService.save(member);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> memberOperationService.save(member));
-        System.out.println("exception.getMessage() = " + exception.getMessage());
-        assertEquals(exception.getMessage(), "username이 중복 됩니다.");
+        assertEquals("username이 중복 됩니다.", exception.getMessage());
     }
 
     @Test
     @DisplayName("RefreshToken 저장 테스트")
+    @Transactional
     void saveRefreshTokenTest() {
 
         memberOperationService.saveRefreshToken("TEST", "askdkdkTEST");
@@ -91,6 +95,7 @@ public class MemberServiceTest {
 
     @Test
     @DisplayName("RefreshToken 중복일 때 테스트")
+    @Transactional
     void saveRefreshTokenDoubleTest() {
         memberOperationService.saveRefreshToken("TEST", "askdkdkTEST");
         memberOperationService.saveRefreshToken("TEST", "sampleKey");
