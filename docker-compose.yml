@@ -3,13 +3,22 @@ version: '3.8'
 services:
   database:
     image: mysql:latest
+    container_name: mysql_db
     ports:
       - "3303:3306"
     volumes:
       - ./db/data:/var/lib/mysql
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
     environment:
       MYSQL_DATABASE: mydata
       MYSQL_ROOT_PASSWORD: admin1234
+      MYSQL_ROOT_HOST: '%'
+      TZ: 'Asia/Seoul'
+    networks:
+      - my-network
   redis:
     image: redis:alpine
     command: redis-server --port 6379
@@ -20,3 +29,23 @@ services:
       - "mode=standalone"
     ports:
       - "6375:6379"
+    networks:
+      - my-network
+  application:
+    container_name: my-sping-boot-3
+    restart: no
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_db:3306/mydata?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "admin1234"
+    depends_on:
+      - database
+    networks:
+      - my-network
+networks:
+  my-network:

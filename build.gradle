@@ -7,6 +7,16 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
+bootJar{
+    archivesBaseName = 'spring-boot-3'
+    archiveFileName = 'spring-boot-3.jar'
+    archiveVersion = "0.0.1"
+}
+
+jar {
+    enabled = false
+}
+
 java {
     sourceCompatibility = '17'
 }
