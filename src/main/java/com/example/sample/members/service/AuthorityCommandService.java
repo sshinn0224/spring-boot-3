@@ -1,6 +1,6 @@
 package com.example.sample.members.service;
 
-import com.example.sample.common.types.AuthType;
+import com.example.sample.members.types.AuthType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

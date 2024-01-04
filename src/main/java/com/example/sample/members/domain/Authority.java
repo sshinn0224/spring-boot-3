@@ -1,6 +1,6 @@
 package com.example.sample.members.domain;
 
-import com.example.sample.common.types.AuthType;
+import com.example.sample.members.types.AuthType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

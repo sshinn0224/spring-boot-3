@@ -1,6 +1,6 @@
 package com.example.sample.members.service;
 
-import com.example.sample.common.types.AuthType;
+import com.example.sample.members.types.AuthType;
 import com.example.sample.members.domain.Authority;
 import com.example.sample.members.domain.Member;
 import com.example.sample.members.domain.RefreshToken;
