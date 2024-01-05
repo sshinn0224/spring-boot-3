@@ -47,7 +47,7 @@ public class TokenProvider implements InitializingBean {
 
     public TokenDto createToken(Authentication authentication) {
         String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
+                .map(item -> item.getAuthority().toString())
                 .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();

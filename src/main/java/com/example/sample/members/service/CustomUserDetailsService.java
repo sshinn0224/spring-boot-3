@@ -35,8 +35,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     private User createUser(Member member) {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
 
-        member.getAuthorityList().stream().map(item -> grantedAuthorityList.add(
-                new SimpleGrantedAuthority(item.toString())));
+        member.getAuthorityList().forEach(
+                item ->
+                {
+                    System.out.println("item = " + item.getAuthType().toString());
+                    grantedAuthorityList.add(new SimpleGrantedAuthority(item.getAuthType().toString()));
+                }
+        );
+
         return new User(member.getUserName(), member.getPassword(), grantedAuthorityList);
     }
 }
